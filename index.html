@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pubs!!!</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1Ijoib3dlbmluZXNvbiIsImEiOiJjbGhjbHpubGIxMnZ0M2RxZnY2YWg1a2V6In0.x18e-QSkddzixrAA0L9EPQ';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/owenineson/cm078cotj00jv01qs59i6dajb',
+        center: [-2.242631, 53.480759], // starting position [lng, lat]. Note that lat must be set between -90 and 90
+        zoom: 11 // starting zoom
+    });
+
+    map.on('click', (event) => {
+        π
+        const features = map.queryRenderedFeatures(event.point, {layers:['manchester-pubs']});
+        if (!features.length) {
+            return;
+        }
+        const feature = features[0];
+
+        const popup = new mapboxgl.Popup({ offset: [0, -15] })
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML(`<h3>${feature.properties.name}</h3>Score: <b>${feature.properties.rating}</b><p>${feature.properties.description}</p>`)
+            .addTo(map);
+    });
+</script>
+
+</body>
+</html>
+
