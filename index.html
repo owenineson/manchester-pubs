@@ -16,14 +16,13 @@ body { margin: 0; padding: 0; }
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1Ijoib3dlbmluZXNvbiIsImEiOiJjbGhjbHpubGIxMnZ0M2RxZnY2YWg1a2V6In0.x18e-QSkddzixrAA0L9EPQ';
     const map = new mapboxgl.Map({
-        container: 'map', // container ID
+        container: 'map',
         style: 'mapbox://styles/owenineson/cm078cotj00jv01qs59i6dajb',
-        center: [-2.242631, 53.480759], // starting position [lng, lat]. Note that lat must be set between -90 and 90
-        zoom: 11 // starting zoom
+        center: [-2.242631, 53.480759],
+        zoom: 11
     });
 
     map.on('click', (event) => {
-        π
         const features = map.queryRenderedFeatures(event.point, {layers:['manchester-pubs']});
         if (!features.length) {
             return;
